@@ -118,7 +118,7 @@ async function basicScene(engine) {
 	var skybox = BABYLON.MeshBuilder.CreateBox("skyBox", {size:70.0}, scene);
 	var skyboxMaterial = new BABYLON.StandardMaterial("skyBox", scene);
 	skyboxMaterial.backFaceCulling = false;
-	skyboxMaterial.reflectionTexture = await new BABYLON.CubeTexture("https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/skybox/", scene);
+	skyboxMaterial.reflectionTexture = await new BABYLON.CubeTexture("skybox/", scene);
 	skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
 	skyboxMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
 	skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
@@ -133,15 +133,15 @@ async function basicScene(engine) {
 
     
     //Import player mesh
-    var result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/", "bambina.glb", scene);
+    var result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/", "bambina.glb", scene);
     var model = result.meshes[0];
 
     //Import monster mesh
-    result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/", "monsterM1.glb", scene);
+    result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/", "monsterM1.glb", scene);
     monsterModel1 = result.meshes[0];
-    result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/", "monsterM2.glb", scene);
+    result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/", "monsterM2.glb", scene);
     monsterModel2 = result.meshes[0];
-    result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/", "monsterM3.glb", scene);
+    result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/", "monsterM3.glb", scene);
     monsterModel3 = result.meshes[0];
     
     setVisibilityChildren(monsterModel1, 0);     // resa invisibile, perche' per fare i mostri la cloniamo
@@ -297,7 +297,7 @@ async function BedroomScene(showHints=false) {
     // Creazione torcia
     if (torch == null && torchSceneId == BEDROOM_SCENE_ID) {
         //Import torch mesh
-        let result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/", "torcia.glb", scene);
+        let result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/", "torcia.glb", scene);
         let torchMesh = result.meshes[0];
 
         torch = new Torch(0.20,0.20, new BABYLON.StandardMaterial(), new BABYLON.Vector3(0,0,1),TORCH_OPENING,TORCH_RANGE,TORCH_EXPONENT,TORCH_LENGHT,TORCH_FAR, torchMesh, scene);
@@ -344,7 +344,7 @@ async function HallwayScene(positionPlayer = false) {
 
         if (torch == null) {
             //Import torch mesh
-            let result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/", "torcia.glb", scene);
+            let result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/", "torcia.glb", scene);
             let torchMesh = result.meshes[0];
 
             torch = new Torch(0.20,0.20, new BABYLON.StandardMaterial(), new BABYLON.Vector3(0,0,1),TORCH_OPENING,TORCH_RANGE,TORCH_EXPONENT,TORCH_LENGHT,TORCH_FAR, torchMesh, scene);
@@ -404,7 +404,7 @@ async function HallwayScene(positionPlayer = false) {
 
     // Creazione torcia
     if (torch == null && torchSceneId == HALLWAY_SCENE_ID) {
-        let result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/", "torcia.glb", scene);
+        let result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/", "torcia.glb", scene);
         let torchMesh = result.meshes[0];
         torch = new Torch(0.20,0.20, new BABYLON.StandardMaterial(), new BABYLON.Vector3(0,0,1),TORCH_OPENING,TORCH_RANGE,TORCH_EXPONENT,TORCH_LENGHT,TORCH_FAR, torchMesh, scene);
         torch.setPosition(torchLastPosition);
@@ -488,7 +488,7 @@ async function LivingroomScene(positionPlayer = false) {
 
         if (torch == null) {
             //Import torch mesh
-            let result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/", "torcia.glb", scene);
+            let result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/", "torcia.glb", scene);
             let torchMesh = result.meshes[0];
 
             torch = new Torch(0.20,0.20, new BABYLON.StandardMaterial(), new BABYLON.Vector3(0,0,1),TORCH_OPENING,TORCH_RANGE,TORCH_EXPONENT,TORCH_LENGHT, TORCH_FAR, torchMesh, scene);
@@ -557,7 +557,7 @@ async function LivingroomScene(positionPlayer = false) {
     // Creazione torcia
     if (torch == null && torchSceneId == LIVINGROOM_SCENE_ID) {
         //Import torch mesh
-        let result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/", "torcia.glb", scene);
+        let result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/", "torcia.glb", scene);
         let torchMesh = result.meshes[0];
 
         torch = new Torch(0.20,0.20, new BABYLON.StandardMaterial(), new BABYLON.Vector3(0,0,1),TORCH_OPENING,TORCH_RANGE,TORCH_EXPONENT,TORCH_LENGHT, TORCH_FAR, torchMesh, scene);

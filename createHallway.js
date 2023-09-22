@@ -48,7 +48,7 @@ async function createHallway() {
     /***** CARTELLI con scritte *****/
     if (document.getElementById("hints").checked) {
         // Cartello 6 (use mirror to reflect light)
-        result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/cartelli/", "cartello6.glb", scene);
+        result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/cartelli/", "cartello6.glb", scene);
         var cart6 = result.meshes[0];
         cart6.scaling = new BABYLON.Vector3(-1.4, 1.2, 1.2);
         cart6.position = new BABYLON.Vector3(-2.3, 0.52, 8.7);
@@ -59,7 +59,7 @@ async function createHallway() {
         cart6.setParent(scene.getMeshByName("wall3"));
 
         // Cartello 7 (stairs at the end of the hallway)
-        result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/cartelli/", "cartello7.glb", scene);
+        result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/cartelli/", "cartello7.glb", scene);
         var cart7 = result.meshes[0];
         cart7.scaling = new BABYLON.Vector3(-1.6, 1.3, 1.2);
         cart7.position = new BABYLON.Vector3(2.35, 1.8, 9.4);
@@ -70,7 +70,7 @@ async function createHallway() {
         cart7.setParent(scene.getMeshByName("wall1"));
 
         // Cartello 8 (crouch to reach the stairs)
-        result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/cartelli/", "cartello8.glb", scene);
+        result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/cartelli/", "cartello8.glb", scene);
         var cart8 = result.meshes[0];
         cart8.scaling = new BABYLON.Vector3(-1.2, 1, 1);
         cart8.position = new BABYLON.Vector3(1.4, 2.2, -7.9);
@@ -84,7 +84,7 @@ async function createHallway() {
 
     if (loadModels) {
         //Pianta (modello)
-        result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/", "pianta.glb", scene);
+        result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/", "pianta.glb", scene);
         var piantaModel = result.meshes[0];
         piantaModel.scaling = new BABYLON.Vector3(3.5, 3.5, 3.5);
         piantaModel.position = new BABYLON.Vector3(1.8, 0, 13.3);
@@ -92,7 +92,7 @@ async function createHallway() {
         objects.push(piantaModel);
 
         //Lampade (modello)
-        result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/", "lampadaMuro.glb", scene);
+        result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/", "lampadaMuro.glb", scene);
         var lampadaModel1 = result.meshes[0];
         lampadaModel1.scaling = new BABYLON.Vector3(3.5, 3.5, 3.5);
         lampadaModel1.position = new BABYLON.Vector3(2.45, 2.8, 8.2);
@@ -120,9 +120,9 @@ async function createHallway() {
     if (loadModels) {
         //Armadietto 1 (modello)
         if (lightVersion)
-            result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/hallway/", "armadietto.glb", scene);
+            result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/hallway/", "armadietto.glb", scene);
         else
-            result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/hallway/", "armadietto-texture.glb", scene);
+            result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/hallway/", "armadietto-texture.glb", scene);
         var armadiettoModel1 = result.meshes[0];
         armadiettoModel1.scaling = new BABYLON.Vector3(6, 4.9, 4.8);
         armadiettoModel1.position = new BABYLON.Vector3(-0.3, 0, 8.1);
@@ -151,7 +151,7 @@ async function createHallway() {
     
     if (loadModels && !lightVersion) {
         //Quadri (modello)
-        result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/hallway/", "quadri-1.glb", scene);
+        result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/hallway/", "quadri-1.glb", scene);
         var quadriModel1 = result.meshes[0];
         quadriModel1.scaling = new BABYLON.Vector3(-3, 3, 3);
         quadriModel1.position = new BABYLON.Vector3(-2.35, 0.2, 6);
@@ -161,7 +161,7 @@ async function createHallway() {
         objects.push(quadriModel1);
         quadriModel1.setParent(scene.getMeshByName("wall3"));
 
-        result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/hallway/", "quadri-2.glb", scene);
+        result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/hallway/", "quadri-2.glb", scene);
         var quadriModel2 = result.meshes[0];
         quadriModel2.scaling = new BABYLON.Vector3(-3, 3, 3);
         quadriModel2.position = new BABYLON.Vector3(-2.35, 0.2, 8.5);
@@ -173,9 +173,9 @@ async function createHallway() {
     }
     // Specchio
     if (lightVersion)
-        result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/hallway/", "mirrorDirty.glb", scene);
+        result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/hallway/", "mirrorDirty.glb", scene);
     else
-        result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/hallway/", "mirrorDirty-texture.glb", scene);
+        result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/hallway/", "mirrorDirty-texture.glb", scene);
     mirrorModel = result.meshes[0];
     mirrorModel.name = "Mirror";
     setPickableChildren(mirrorModel, true);
@@ -199,7 +199,7 @@ async function createHallway() {
 
     if (loadModels) {
         //Sgabello (modello)
-        result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/hallway/", "sgabello.glb", scene);
+        result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/hallway/", "sgabello.glb", scene);
         var sgabelloModel1 = result.meshes[0];
         sgabelloModel1.scaling = new BABYLON.Vector3(4, 3.35, 4.3);
         sgabelloModel1.position = new BABYLON.Vector3(1.2, 0, 0.5);
@@ -221,9 +221,9 @@ async function createHallway() {
     if (loadModels) {
         //Libreria (modello)
         if (lightVersion)
-            result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/hallway/", "libreria.glb", scene);
+            result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/hallway/", "libreria.glb", scene);
         else
-            result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/hallway/", "libreria-texture.glb", scene);
+            result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/hallway/", "libreria-texture.glb", scene);
         var libreriaModel = result.meshes[0];
         libreriaModel.scaling = new BABYLON.Vector3(-4.9, 5, -3.7);
         libreriaModel.position = new BABYLON.Vector3(-1.6, 0, 0.5);
@@ -255,9 +255,9 @@ async function createHallway() {
     if (loadModels) {
         // Tavolo (modello)
         if (lightVersion)
-            result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/hallway/", "tavolo.glb", scene);
+            result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/hallway/", "tavolo.glb", scene);
         else
-            result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/hallway/", "tavolo-texture.glb", scene);
+            result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/hallway/", "tavolo-texture.glb", scene);
         var tavoloModel = result.meshes[0];
         tavoloModel.scaling = new BABYLON.Vector3(4.2, 4.6, 4);
         tavoloModel.position = new BABYLON.Vector3(-0.95, 0, -8.8);
@@ -273,9 +273,9 @@ async function createHallway() {
     //Finestra 1 (modello)
     if (loadModels) {
         if (lightVersion)
-            result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/", "finestra.glb", scene);
+            result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/", "finestra.glb", scene);
         else
-            result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/", "finestra-texture.glb", scene);
+            result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/", "finestra-texture.glb", scene);
         var finestraModel = result.meshes[0];
         finestraModel.scaling = new BABYLON.Vector3(4, 3.2, 3);
         finestraModel.position = new BABYLON.Vector3(2.45, 0, 13.5);
@@ -324,9 +324,9 @@ async function createHallway() {
     if (loadModels) {
         //Porta (modello)
         if (lightVersion)
-            result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/", "porta.glb", scene);
+            result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/", "porta.glb", scene);
         else
-            result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/", "porta-texture.glb", scene);
+            result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/", "porta-texture.glb", scene);
         var portaModel1 = result.meshes[0];
         portaModel1.scaling = new BABYLON.Vector3(4, 3.2, 2.2);
         portaModel1.position = new BABYLON.Vector3(-2.25, 0, 13.5);
@@ -360,9 +360,9 @@ async function createHallway() {
     if (loadModels) {
         // Scala (modello)
         if (lightVersion)
-            result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/hallway/", "staircase-colonna.glb", scene);
+            result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/hallway/", "staircase-colonna.glb", scene);
         else
-            result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/hallway/", "staircase-colonna-texture.glb", scene);
+            result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/hallway/", "staircase-colonna-texture.glb", scene);
         var scalaModel = result.meshes[0];
         scalaModel.scaling = new BABYLON.Vector3(-4, 4.5, 4);
         scalaModel.position = new BABYLON.Vector3(0, -4.7, -12);
@@ -428,9 +428,9 @@ async function createHallway() {
     if (loadModels) {
         //Ringhiera scale (modello)
         if (lightVersion)
-            result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/hallway/", "fence.glb", scene);
+            result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/hallway/", "fence.glb", scene);
         else
-            result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/hallway/", "fence-texture.glb", scene);
+            result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/hallway/", "fence-texture.glb", scene);
         var fenceModel = result.meshes[0];
         fenceModel.scaling = new BABYLON.Vector3(3, 4, 3.2);
         fenceModel.position = new BABYLON.Vector3(0.3, 0, -12.35);

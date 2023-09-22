@@ -48,7 +48,7 @@ async function createLivingroom() {
 
     //CHIAVE
     if (!player.ownKey()) {
-        result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/livingroom/cucina/", "key.glb", scene);
+        result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/livingroom/cucina/", "key.glb", scene);
         var key = result.meshes[0];
         key.scaling = new BABYLON.Vector3(3, 3, 3);
         key.position = new BABYLON.Vector3(3.78, 1.88, 1.13);
@@ -227,9 +227,9 @@ async function createLivingroom() {
     // Cornici porte
     if (loadModels) {
         if (lightVersion)
-            result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/livingroom/", "porta-cornice.glb", scene);
+            result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/livingroom/", "porta-cornice.glb", scene);
         else
-            result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/livingroom/", "porta-cornice-texture.glb", scene);
+            result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/livingroom/", "porta-cornice-texture.glb", scene);
         var cornicePorta1 = result.meshes[0];                           // tra ingresso e salotto
         cornicePorta1.scaling = new BABYLON.Vector3(4.3, 3, 4.05);
         cornicePorta1.position = new BABYLON.Vector3(0.45, 0, 3.18);
@@ -263,9 +263,9 @@ async function createLivingroom() {
 
         if (loadModels) {
             if (lightVersion)
-                result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/livingroom/", "porta-sliding-vetro.glb", scene);
+                result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/livingroom/", "porta-sliding-vetro.glb", scene);
             else
-                result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/livingroom/", "porta-sliding-vetro-texture.glb", scene);
+                result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/livingroom/", "porta-sliding-vetro-texture.glb", scene);
             var portaSliding1 = result.meshes[0];                           // tra ingresso e salotto
             portaSliding1.name = "portaSliding1";
             portaSliding1.scaling = new BABYLON.Vector3(-4.4, 3, 4.05);
@@ -286,9 +286,9 @@ async function createLivingroom() {
 
         if (loadModels) {
             if (lightVersion)
-                result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/livingroom/", "porta-sliding-vetro.glb", scene);
+                result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/livingroom/", "porta-sliding-vetro.glb", scene);
             else
-                result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/livingroom/", "porta-sliding-vetro-texture.glb", scene);
+                result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/livingroom/", "porta-sliding-vetro-texture.glb", scene);
             var portaSliding2 = result.meshes[0];
             portaSliding2.name = "portaSliding2";
             portaSliding2.scaling = new BABYLON.Vector3(-4.4, 3, 4.05);
@@ -310,9 +310,9 @@ async function createLivingroom() {
 
         if (loadModels) {
             if (lightVersion)
-                result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/livingroom/", "porta-sliding.glb", scene);   
+                result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/livingroom/", "porta-sliding.glb", scene);   
             else
-                result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/livingroom/", "porta-sliding-texture.glb", scene);
+                result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/livingroom/", "porta-sliding-texture.glb", scene);
             var portaSliding3 = result.meshes[0];                         // tra ingresso e bagno
             portaSliding3.name = "portaSliding3";
             portaSliding3.scaling = new BABYLON.Vector3(-4.4, 3, 4.05);
@@ -330,7 +330,7 @@ async function createLivingroom() {
 
     if (document.getElementById("hints").checked) {
         // Cartello 5 (press Q to take the key)
-        result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/cartelli/", "cartello5.glb", scene);
+        result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/cartelli/", "cartello5.glb", scene);
         var cart5 = result.meshes[0];
         cart5.scaling = new BABYLON.Vector3(-1, 0.9, 0.9);
         cart5.position = new BABYLON.Vector3(3.78, 2, -0.4);
@@ -341,7 +341,7 @@ async function createLivingroom() {
         cart5.setParent(wallInternal3);
 
         // Cartello 9 (look for the key in the kitchen)
-        result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/cartelli/", "cartello9.glb", scene);
+        result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/cartelli/", "cartello9.glb", scene);
         var cart9 = result.meshes[0];
         cart9.scaling = new BABYLON.Vector3(-1.4, 1.2, 1.2);
         cart9.position = new BABYLON.Vector3(-0.3, 1, 3.45);
@@ -354,7 +354,7 @@ async function createLivingroom() {
 
 
         // Cartello 10 (hit the monsters through the glass)
-        result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/cartelli/", "cartello10.glb", scene);
+        result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/cartelli/", "cartello10.glb", scene);
         var cart10 = result.meshes[0];
         cart10.scaling = new BABYLON.Vector3(-1.4, 1.2, 1.2);
         cart10.position = new BABYLON.Vector3(-0.3, 2.1, 3.45);
@@ -382,9 +382,9 @@ async function createLivingroom() {
     if (loadModels) {
             // Scala (modello)
             if (lightVersion)
-                result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/livingroom/", "staircase.glb", scene);   
+                result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/livingroom/", "staircase.glb", scene);   
             else
-                result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/livingroom/", "staircase-texture.glb", scene);
+                result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/livingroom/", "staircase-texture.glb", scene);
             var scalaModel = result.meshes[0];
             scalaModel.scaling = new BABYLON.Vector3(-4, 4.5, 4);
             scalaModel.position = new BABYLON.Vector3(5.5, 0, 4.3);
@@ -406,7 +406,7 @@ async function createLivingroom() {
         
         if (!lightVersion) {
             //Quadri (modello)
-            result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/livingroom/", "quadri-ingresso.glb", scene);
+            result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/livingroom/", "quadri-ingresso.glb", scene);
             var quadriModel = result.meshes[0];
             quadriModel.scaling = new BABYLON.Vector3(1, 0.9, 1);
             quadriModel.position = new BABYLON.Vector3(4.5, 1, 3.3);
@@ -417,7 +417,7 @@ async function createLivingroom() {
         }
 
         //Piante (modello)
-        result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/", "pianta.glb", scene);
+        result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/", "pianta.glb", scene);
         var piantaModel1 = result.meshes[0];
         piantaModel1.scaling = new BABYLON.Vector3(3.5, 3.5, 3.5);
         piantaModel1.position = new BABYLON.Vector3(7.5, 0, 3.8);
@@ -442,7 +442,7 @@ async function createLivingroom() {
     
     if (loadModels) {
         //Gabinetto (modello)
-        result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/livingroom/bagno/", "gabinetto.glb", scene);
+        result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/livingroom/bagno/", "gabinetto.glb", scene);
         var gabinettoModel = result.meshes[0];
         gabinettoModel.scaling = new BABYLON.Vector3(3.5, 4, 3.5);
         gabinettoModel.position = new BABYLON.Vector3(-8.5, 0, 7.7);
@@ -460,7 +460,7 @@ async function createLivingroom() {
 
     if (loadModels) {
         //Doccia (modello)
-        result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/livingroom/bagno/", "doccia.glb", scene);
+        result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/livingroom/bagno/", "doccia.glb", scene);
         var docciaModel = result.meshes[0];
         docciaModel.scaling = new BABYLON.Vector3(4, 3.5, 4);
         docciaModel.position = new BABYLON.Vector3(-6.1, 0, 3.1);
@@ -481,9 +481,9 @@ async function createLivingroom() {
     if (loadModels) {
         //Lavandino (modello)
         if (lightVersion)
-            result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/livingroom/bagno/", "lavandino.glb", scene);
+            result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/livingroom/bagno/", "lavandino.glb", scene);
         else
-            result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/livingroom/bagno/", "lavandino-texture.glb", scene);
+            result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/livingroom/bagno/", "lavandino-texture.glb", scene);
         var lavandinoModel = result.meshes[0];
         lavandinoModel.scaling = new BABYLON.Vector3(4.5, 3.8, 4.3);
         lavandinoModel.position = new BABYLON.Vector3(-4.5, 0, 5);
@@ -494,9 +494,9 @@ async function createLivingroom() {
 
         //Specchio lavandino (modello)
         if (lightVersion)
-            result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/livingroom/bagno/", "specchio-lavandino.glb", scene);
+            result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/livingroom/bagno/", "specchio-lavandino.glb", scene);
         else
-            result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/livingroom/bagno/", "specchio-lavandino-texture.glb", scene);
+            result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/livingroom/bagno/", "specchio-lavandino-texture.glb", scene);
         var specchioLavandinoModel = result.meshes[0];
         specchioLavandinoModel.scaling = new BABYLON.Vector3(4.5, 3.7, 4.2);
         specchioLavandinoModel.position = new BABYLON.Vector3(-4.2, 2.1, 3.3);
@@ -509,9 +509,9 @@ async function createLivingroom() {
     //Finestra bagno (modello)
     if (loadModels) {
         if (lightVersion)
-            result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/", "finestra.glb", scene);
+            result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/", "finestra.glb", scene);
         else
-            result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/", "finestra-texture.glb", scene);
+            result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/", "finestra-texture.glb", scene);
         var finestraBagnoModel = result.meshes[0];
         finestraBagnoModel.scaling = new BABYLON.Vector3(4, 3.2, 3);
         finestraBagnoModel.position = new BABYLON.Vector3(-7.5, 0, 8.45);
@@ -643,9 +643,9 @@ async function createLivingroom() {
     if (loadModels) {
         //Cucina (modello)
         if (lightVersion)
-            result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/livingroom/cucina/", "cucina.glb", scene);
+            result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/livingroom/cucina/", "cucina.glb", scene);
         else
-            result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/livingroom/cucina/", "cucina-texture.glb", scene);
+            result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/livingroom/cucina/", "cucina-texture.glb", scene);
         var cucinaModel = result.meshes[0];
         cucinaModel.scaling = new BABYLON.Vector3(-4.5, 4.5, 4.5);
         cucinaModel.position = new BABYLON.Vector3(6.4, 0, -2.65);
@@ -657,9 +657,9 @@ async function createLivingroom() {
     if (loadModels) {
         //Mobile pensile (modello)
         if (lightVersion)
-            result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/livingroom/cucina/", "pensile.glb", scene);
+            result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/livingroom/cucina/", "pensile.glb", scene);
         else
-            result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/livingroom/cucina/", "pensile-texture.glb", scene);
+            result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/livingroom/cucina/", "pensile-texture.glb", scene);
         var pensileModel = result.meshes[0];
         pensileModel.scaling = new BABYLON.Vector3(4.3, 2.5, 5.5);
         pensileModel.position = new BABYLON.Vector3(7.2, 3, -8.35);
@@ -681,7 +681,7 @@ async function createLivingroom() {
     navMeshObjects.push(frigo);
     if (loadModels) {
         //Frigo (modello)
-        result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/livingroom/cucina/", "frigo.glb", scene);
+        result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/livingroom/cucina/", "frigo.glb", scene);
         var frigoModel = result.meshes[0];
         frigoModel.scaling = new BABYLON.Vector3(4.6, 3.6, 4.6);
         frigoModel.position = new BABYLON.Vector3(7, 0, 0.7);
@@ -693,9 +693,9 @@ async function createLivingroom() {
 
     //Chiavi (modello)
     if (lightVersion)
-        result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/livingroom/cucina/", "chiavi.glb", scene);
+        result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/livingroom/cucina/", "chiavi.glb", scene);
     else
-        result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/livingroom/cucina/", "chiavi-texture.glb", scene);
+        result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/livingroom/cucina/", "chiavi-texture.glb", scene);
     var chiaviModel = result.meshes[0];
     chiaviModel.scaling = new BABYLON.Vector3(3, 3, 3);
     chiaviModel.position = new BABYLON.Vector3(4.1, 1.8, 1.8);
@@ -770,7 +770,7 @@ async function createLivingroom() {
     navMeshObjects.push(secchio);
     if (loadModels) {
         //Secchio (modello)
-        result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/livingroom/cucina/", "secchio.glb", scene);
+        result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/livingroom/cucina/", "secchio.glb", scene);
         var secchioModel = result.meshes[0];
         secchioModel.scaling = new BABYLON.Vector3(4.8, 3.7, 4.8);
         secchioModel.position = new BABYLON.Vector3(4.3, 0, -7.5);
@@ -843,9 +843,9 @@ async function createLivingroom() {
     if (loadModels) {
         //Tavolo (modello)
         if (lightVersion)
-            result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/livingroom/salotto/", "tavolo.glb", scene);
+            result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/livingroom/salotto/", "tavolo.glb", scene);
         else
-            result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/livingroom/salotto/", "tavolo-texture.glb", scene);
+            result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/livingroom/salotto/", "tavolo-texture.glb", scene);
         var tavoloModel = result.meshes[0];
         tavoloModel.scaling = new BABYLON.Vector3(1.05, 1, 0.92);
         tavoloModel.position = new BABYLON.Vector3(-0.6, 0, -1.85);
@@ -855,7 +855,7 @@ async function createLivingroom() {
     }
     if (loadModels) {
         //Valigie sopra tavolo (modello)
-        result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/livingroom/salotto/", "valigie.glb", scene);
+        result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/livingroom/salotto/", "valigie.glb", scene);
         var valigieModel = result.meshes[0];
         valigieModel.scaling = new BABYLON.Vector3(-5, 5, 5);
         valigieModel.position = new BABYLON.Vector3(-0.6, 2.3, -1.85);
@@ -892,7 +892,7 @@ async function createLivingroom() {
 
     if (loadModels) {
         //Divano (modello)
-        result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/livingroom/salotto/", "divano.glb", scene);
+        result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/livingroom/salotto/", "divano.glb", scene);
         var divanoModel = result.meshes[0];
         divanoModel.scaling = new BABYLON.Vector3(4.8, 5, 4.6);
         divanoModel.position = new BABYLON.Vector3(-3.8, 0, -5);
@@ -904,7 +904,7 @@ async function createLivingroom() {
     if (loadModels) {
         if (!lightVersion) {
             //Quadro 1 (modello)
-            result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/livingroom/salotto/", "quadro1.glb", scene);
+            result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/livingroom/salotto/", "quadro1.glb", scene);
             var quadro1Model = result.meshes[0];
             quadro1Model.scaling = new BABYLON.Vector3(2.7, 2.8, 2.7);
             quadro1Model.position = new BABYLON.Vector3(-8.45, 2, -5.5);
@@ -915,7 +915,7 @@ async function createLivingroom() {
             quadro1Model.setParent(scene.getMeshByName("wall3"));
 
             //Quadro 2 (modello)
-            result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/livingroom/salotto/", "quadro2.glb", scene);
+            result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/livingroom/salotto/", "quadro2.glb", scene);
             var quadro2Model = result.meshes[0];
             quadro2Model.scaling = new BABYLON.Vector3(2.7, 2.8, 2.7);
             quadro2Model.position = new BABYLON.Vector3(-8.45, 2, -0.5);
@@ -927,7 +927,7 @@ async function createLivingroom() {
 
 
             //Quadro 3 (modello)
-            result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/livingroom/salotto/", "quadro3.glb", scene);
+            result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/livingroom/salotto/", "quadro3.glb", scene);
             var quadro3Model = result.meshes[0];
             quadro3Model.scaling = new BABYLON.Vector3(2.3, 2.3, 2.3);
             quadro3Model.position = new BABYLON.Vector3(3.5, 1.6, -6);
@@ -938,7 +938,7 @@ async function createLivingroom() {
             quadro3Model.setParent(wallInternal4);
             
             //Quadro 4 (modello)
-            result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/livingroom/salotto/", "quadro4.glb", scene);
+            result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/livingroom/salotto/", "quadro4.glb", scene);
             var quadro4Model = result.meshes[0];
             quadro4Model.scaling = new BABYLON.Vector3(2.3, 2.3, 2.3);
             quadro4Model.position = new BABYLON.Vector3(3.5, 1.6, 0.5);
@@ -951,9 +951,9 @@ async function createLivingroom() {
 
         //Orso - tra le finestre (modello)
         if (lightVersion)
-            result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/livingroom/salotto/", "bear.glb", scene);
+            result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/livingroom/salotto/", "bear.glb", scene);
         else
-            result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/livingroom/salotto/", "bear-texture.glb", scene);
+            result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/livingroom/salotto/", "bear-texture.glb", scene);
         var bearModel = result.meshes[0];
         bearModel.scaling = new BABYLON.Vector3(3, 3, 2.8);
         bearModel.position = new BABYLON.Vector3(-1.8, 2, -7.6);
@@ -972,7 +972,7 @@ async function createLivingroom() {
     navMeshObjects.push(caminetto);
     if (loadModels) {
         //Caminetto (modello)
-        result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/livingroom/salotto/", "caminetto.glb", scene);
+        result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/livingroom/salotto/", "caminetto.glb", scene);
         var caminettoModel = result.meshes[0];
         caminettoModel.scaling = new BABYLON.Vector3(-1.3, 1.3, 1.3);
         caminettoModel.position = new BABYLON.Vector3(-8.2, 0, -3);
@@ -997,9 +997,9 @@ async function createLivingroom() {
     if (loadModels) {
         //Sedia 2 (modello)
         if (lightVersion)
-            result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/livingroom/salotto/", "sedia.glb", scene);
+            result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/livingroom/salotto/", "sedia.glb", scene);
         else
-            result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/livingroom/salotto/", "sedia-texture.glb", scene);
+            result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/livingroom/salotto/", "sedia-texture.glb", scene);
         var sediaModel2 = result.meshes[0];
         sediaModel2.scaling = new BABYLON.Vector3(4.5, 4.5, 4.5);
         sediaModel2.position = new BABYLON.Vector3(-4.9, 0, -6.9);
@@ -1040,9 +1040,9 @@ async function createLivingroom() {
     if (loadModels) {
         //Libreria (modello)
         if (lightVersion)
-            result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/livingroom/salotto/", "libreria.glb", scene);
+            result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/livingroom/salotto/", "libreria.glb", scene);
         else
-            result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/livingroom/salotto/", "libreria-texture.glb", scene);
+            result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/livingroom/salotto/", "libreria-texture.glb", scene);
         var libreriaModel = result.meshes[0];
         libreriaModel.scaling = new BABYLON.Vector3(5, 5, 4.5);
         libreriaModel.position = new BABYLON.Vector3(-2.2, 0, 1.7);
@@ -1055,9 +1055,9 @@ async function createLivingroom() {
     if (loadModels) {
         //Finestra 1 salotto (modello)
         if (lightVersion)
-            result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/", "finestra-larga.glb", scene);
+            result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/", "finestra-larga.glb", scene);
         else
-            result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/", "finestra-larga-texture.glb", scene);
+            result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/", "finestra-larga-texture.glb", scene);
         var finestraSalottoModel1 = result.meshes[0];
         finestraSalottoModel1.scaling = new BABYLON.Vector3(3, 3.2, 3);
         finestraSalottoModel1.position = new BABYLON.Vector3(2, 0, -8.45);
@@ -1085,7 +1085,7 @@ async function createLivingroom() {
 
     if (loadModels) {
         //Porta casa (modello)
-        result = await BABYLON.SceneLoader.ImportMeshAsync("", "https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/models/furniture/livingroom/salotto/", "porta-casa.glb", scene);
+        result = await BABYLON.SceneLoader.ImportMeshAsync("", "models/furniture/livingroom/salotto/", "porta-casa.glb", scene);
         var portaCasaModel = result.meshes[0];
         portaCasaModel.scaling = new BABYLON.Vector3(4, 3.2, 3);
         portaCasaModel.position = new BABYLON.Vector3(-7.9, 0, -8.15);
