@@ -1,7 +1,25 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/9ItdZzWA)
-Final project Interactive Graphics:
+# Under the Bed 
+https://github.com/SapienzaInteractiveGraphicsCourse/final-project-under-the-bed/blob/main/Under%20the%20bed.png
+## Students
+Anna Carini 1771784 <br>
+Adriano Izzi 2048338 <br>
+Gavriel Di Nepi 2067753 <br>
 
-Students:
-Anna Carini 1771784
-Adriano Izzi 2048338
-Gavriel Di Nepi 2067753
+## How to play
+- **Mouse** - Turn
+- `W` `A` `S` `D` - Move
+- **Wheel** - Rotate Torch
+- **Space** - Jump
+- **Shift(held)** - Run
+- **C** - Crouch
+- **Q** - Pick Objects
+- **V** - Peek
+- **E** - Drop Objects
+- **R** - Rotate Object
+- **K** - Kick Object
+- **P** - Pause the Game
+
+## Play
+play the game here ➡️ https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/
+
+## Report
