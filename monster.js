@@ -286,8 +286,8 @@ class Monsters {
         this.heartMaterialsList[indexMonster].emissiveColor = new BABYLON.Color3(255/255, 255/255, 255/255);
     }
 
-    waitMonster(indexMonster) {
-        this.monsterList[indexMonster].torched = timeTorched/4;
+    waitMonster(indexMonster, fraction) {
+        this.monsterList[indexMonster].torched = timeTorched/fraction;
         this.monsterList[indexMonster].behav = "Stay";
     }
 

@@ -397,9 +397,9 @@ async function HallwayScene(positionPlayer = false) {
         setPickableChildren(monsterModelVisible3, true);
         monsters[HALLWAY_SCENE_ID].createMonster(new BABYLON.Vector3(1.2, MONSTER_HEIGHT, -7.1), 1, monsterModelVisible3);
         monsters[HALLWAY_SCENE_ID].activateMonsters();
-        monsters[HALLWAY_SCENE_ID].waitMonster(0);
-        monsters[HALLWAY_SCENE_ID].waitMonster(1);
-        monsters[HALLWAY_SCENE_ID].waitMonster(2);
+        monsters[HALLWAY_SCENE_ID].waitMonster(0,4);
+        monsters[HALLWAY_SCENE_ID].waitMonster(1,4);
+        monsters[HALLWAY_SCENE_ID].waitMonster(2,4);
     }
 
     // Creazione torcia
@@ -548,6 +548,9 @@ async function LivingroomScene(positionPlayer = false) {
         setPickableChildren(monsterModelVisible3, true);
         monsters[LIVINGROOM_SCENE_ID].createMonster(new BABYLON.Vector3(-7, MONSTER_HEIGHT+0.1, -5), 1, monsterModelVisible3);
         monsters[LIVINGROOM_SCENE_ID].activateMonsters();
+        monsters[LIVINGROOM_SCENE_ID].waitMonster(0,4);
+        monsters[LIVINGROOM_SCENE_ID].waitMonster(1,4);
+        monsters[LIVINGROOM_SCENE_ID].waitMonster(2,4);
     }
 
 
