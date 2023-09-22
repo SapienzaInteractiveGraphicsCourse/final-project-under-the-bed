@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <title>Under The Bed</title>
+        <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+
+        <!-- Librerie esterne -->
+        <script src="libraries/babylon.js"></script>
+        <script src="libraries/recast.js"></script>
+        <script src="libraries/loaders.min.js"></script>
+        <script src="libraries/earcut.min.js"></script>               <!-- serve a disegnare poligoni -->
+
+        <script src="player.js"></script>
+        <script src="monster.js"></script>
+        <script src="utils.js"></script>
+        <script src="Light/lightSources.js"></script>
+        <script src="Light/lights.js"></script>
+        <script src="extremeMakeoverHomeEdition.js"></script>
+        <script src="createBedroom.js"></script>
+        <script src="createHallway.js"></script>
+        <script src="createLivingroom.js"></script>
+
+        <link rel="stylesheet" href="style.css">
+
+        <style>
+            html, body {
+                overflow: hidden;
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                font-family:'Segoe UI';
+            }
+            #renderCanvas {
+                width: 100%;
+                height: 100%;
+                touch-action: none;
+            }
+            #canvasZone {
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+    </head>
+
+<body onload="resetSwitchs();">
+
+    <div id="canvasZone"><canvas id="renderCanvas"></canvas></div>
+    
+    <!-- START MENU -->
+    <div id="startMenu" style="z-index:1; text-align:center;" >
+        
+        <!-- Background image -->
+        <img style="position:fixed; top:0; left:0; width:100%;" src="images/background.png"/>
+
+        <!-- Menu elements -->
+        <div class="fullScreen" style="text-shadow: 0px -1px rgba(0, 0, 0, 0.3);">
+
+            <!-- Game title -->
+            <div style="width:100%; position:fixed; top:12vh;"><img style="width:36vw" src="images/titolo.gif"></div>
+
+            <span id="startMenuButtons">
+                <!-- Start game button -->
+                <button id="start_button" type="button" class="btn btn-horizontal" title="Start the game from the first room"
+                style="display:block; margin:0 auto; position:relative; top:33vh;">
+                START GAME
+                </button>
+
+                <!-- Level 2 button -->
+                <button id="level2_button" type="button" class="btn btn-horizontal" title="Skip to the second room"
+                style="display:block; margin:0 auto; position:relative; top:37vh;">
+                Go to level 2
+                </button>
+
+                <!-- Level 3 button -->
+                <button id="level3_button" type="button" class="btn btn-horizontal" title="Skip to the third room"
+                style="display:block; margin:0 auto; position:relative; top:41vh;">
+                Go to level 3
+                </button>
+
+
+                <!-- Controls button -->
+                <button id="controls_button" class="btn btn-round" type="button" title="Controls"
+                style="display:block; margin:0 auto; position:relative; top:47vh;"
+                onclick="document.getElementById('startMenuButtons').setAttribute('hidden', null);
+                document.getElementById('startMenuControls').removeAttribute('hidden');">
+                HOW TO PLAY
+                </button>
+
+                <div style="display:inline-block; position:relative; top:53vh;">
+                    <!-- Hints? -->
+                    <div title="A little help doesn't hurt" style="display:block; margin:0 auto;">
+                        <span class="slider-text" style="padding-right:4.77vw;">
+                            PLAY WITH HINTS
+                        </span>
+                        <label class="switch" style="vertical-align: middle;">
+                            <input type="checkbox" id="hints" value="1">
+                                <span class="slider round"></span>
+                            </input>
+                        </label>
+                    </div>
+                    <!-- Play without monsters -->
+                    <div title="Just explore the house!" style="display:block; margin:0 auto; position:relative; top:3vh;">
+                        <span class="slider-text" style="padding-right:10px;">
+                            PLAY WITHOUT MONSTERS
+                        </span>
+                        <label class="switch" style="vertical-align: middle;">
+                            <input type="checkbox" id="monsters" value="1">
+                                <span class="slider round"></span>
+                            </input>
+                        </label>
+                    </div>
+                </div>
+                <div style="display:inline-block; vertical-align:top; position:relative; top:53vh; padding-left:1.5vw;">
+                    <!-- Light version -->
+                    <div title="Your PC will thank you" style="display:block; margin:0 auto;">
+                        <span class="slider-text" style="padding-right:1.78vw;">
+                            LIGHTER VERSION
+                        </span>
+                        <label class="switch" style="vertical-align: middle;">
+                            <input type="checkbox" id="lighter" value="1">
+                                <span class="slider round"></span>
+                            </input>
+                        </label>
+                    </div>
+                    <!-- Heavy version -->
+                    <div title="Let's hear those computer fans" style="display:block; margin:0 auto; position:relative; top:3vh;">
+                        <span class="slider-text" style="padding-right:0.62vw;">
+                            ACTIVATE SHADOWS
+                        </span>
+                        <label class="switch" style="vertical-align: middle;">
+                            <input type="checkbox" id="shadows" value="1">
+                                <span class="slider round"></span>
+                            </input>
+                        </label>
+                    </div>
+                </div>
+            </span>
+
+            <!-- CONTROLS -->
+            <span id="startMenuControls" hidden>
+                <div style="display:block; margin:0 auto; position:relative; top:31vh; width:fit-content; height:fit-content; background-color:transparent;     
+                color:rgb(255, 252, 204); font-size:1.1vw;">
+                Try to reach the exit of the house, avoiding the monsters. If<br>
+                you light up their hearts with the <b>flashlight</b>, they will freeze<br>
+                for a few seconds. You have three lives, don't waste them!
+                </div>
+                <div class="controls" style="top:37vh; background-color:transparent;">
+                    <div style="display:inline-block; margin-right:4vw;">
+                        <div style="font-size:1.35vw; padding-bottom:15px; color:rgb(195, 193, 164);">MAIN CONTROLS</div>
+                        <span style="display:inline-block;">
+                            MOUSE<br>
+                            WASD<br>
+                            WHEEL<br>
+                            SPACEBAR<br>
+                            SHIFT (held)<br>
+                            C<br>
+                            Q
+                        </span>
+                        <span style="display:inline-block; padding-left:15px; color:rgb(195, 193, 164);">
+                            Turn<br>
+                            Move<br>
+                            Rotate torch<br>
+                            Jump<br>
+                            Run<br>
+                            Crouch<br>
+                            Pick object
+                        </span>
+                    </div>
+                    <div style="display:inline-block; vertical-align:top;">
+                        <div style="font-size:1.35vw; padding-bottom:15px; color:rgb(195, 193, 164);">OTHERS</div>
+                        <span style="display:inline-block;">
+                            E<br>
+                            V<br>
+                            G<br>
+                            K<br>
+                            P
+                        </span>
+                        <span style="display:inline-block; padding-left:15px; color:rgb(195, 193, 164);">
+                            Drop object<br>
+                            Peek<br>
+                            Rotate object<br>
+                            Kick object<br>
+                            Pause game
+                        </span>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-horizontal" title="Skip to the third room" style="display:block; margin:0 auto; position:relative; top:42vh;"
+                onclick="document.getElementById('startMenuControls').setAttribute('hidden', null);
+                document.getElementById('startMenuButtons').removeAttribute('hidden');">
+                Back to menu
+                </button>
+
+            </span>
+        </div>
+    </div>
+
+    <!-- PAUSE MENU -->
+    <div id="pauseMenu" class="fullScreen" style="text-align:center; background-color:rgba(2, 2, 14, 0.4); text-shadow: 0px -1px rgba(0, 0, 0, 0.3);" hidden>
+
+        <!-- Game title -->
+        <div style="width:100%; position:fixed; top:12vh;"><img style="width:36vw" src="images/titolo.gif"></div>
+
+        <!-- Resume button -->
+        <button id="resume_button" class="btn" type="button" title="Resume playing" style="display:inline-block; margin:0 auto; position:relative; top:32vh;
+        width:8vw; height:8vw; border:2px solid; border-top: 1px solid; background-color:rgba(0, 0, 0, 0.2); border-radius:4vw; padding: 5px 10px; margin-right:15px;"
+        onclick="unpauseGame();">
+        Resume<br>game
+        </button>
+
+        <!-- Controls -->
+        <div class="controls" style="top:36vh; background-color:rgba(0, 0, 0, 0.2);">
+                <div style="display:inline-block; margin-right:4vw;">
+                    <span style="display:inline-block;">
+                        MOUSE<br>
+                        WASD<br>
+                        WHEEL<br>
+                        SPACEBAR<br>
+                        SHIFT (held)<br>
+                        C
+                    </span>
+                    <span style="display:inline-block; padding-left:15px; color:rgb(195, 193, 164);">
+                        Turn<br>
+                        Move<br>
+                        Rotate torch<br>
+                        Jump<br>
+                        Run<br>
+                        Crouch
+                    </span>
+                </div>
+                <div style="display:inline-block; vertical-align:top;">
+                    <span style="display:inline-block;">
+                        Q<br>
+                        E<br>
+                        V<br>
+                        G<br>
+                        K<br>
+                        P
+                    </span>
+                    <span style="display:inline-block; padding-left:15px; color:rgb(195, 193, 164);">
+                        Pick object<br>
+                        Drop object<br>
+                        Peek<br>
+                        Rotate object<br>
+                        Kick object<br>
+                        Pause game
+                    </span>
+                </div>
+        </div>
+        
+        <!-- Go to start button -->
+        <button id="go_to_start_button" class="btn btn-horizontal" type="button" title="Go back to the start menu"
+        style="display:block; margin:0 auto; position:relative; top:40vh; background-color:rgba(0, 0, 0, 0.2);" onclick="goBackToStart();">
+        Start menu
+        </button>
+
+    </div>
+
+    <!-- Schermata di caricamento -->
+    <div id="loading" class="fullScreen" style="text-align:center; background-color: rgb(1, 1, 11);" hidden>
+        <div style="position:absolute; top:48vh; left:50vw; transform: translate(-50%, -50%);">
+            <div style="font-size:1.7vw; /*font-weight: bold*/;
+            color:rgb(255, 255, 215); transform:scaleY(1.1);">LOADING</div>
+            <img src="images/loading.gif" width="60px" height="60px" style="margin-top:20px;"/>
+        </div>
+    </div>
+
+    <!-- Spiegazione iniziale gioco -->
+    <div id="lore" class="fullScreen" hidden>
+        <div style="position:fixed; width:fit-content; height:fit-content; top:50vh; left:50vw; transform: translate(-50%, -50%); border-radius:15px; vertical-align:middle;
+        text-align:center; background-color: rgba(1, 1, 11, 0.7);">
+            <div id="lore_text" style="font-size:1vw; scale:0.95 1; color:rgb(255, 253, 225); margin:25px 20px;">
+                <div style="font-size:1.4vw;">Under The Bed</div>
+                <hr>
+                In a remote country home, Claire lives with her beloved parents. They, however, are somewhat<br>
+                detached toward her and so, after leaving for a couples' vacation, they never returned. Perhaps<br>
+                they may have forgotten they have a daughter? Claire waits and waits for them, days going by.
+                <hr style="opacity:0;">
+                On the evening of the third night, Claire shakily clutches the covers of her bed: she is afraid.<br>
+                Her parents have not yet returned. Yet, she will not be alone that night. As in her worst nightmares,<br>
+                from under the bed sprout <b style="color: rgb(123, 111, 250);">black-ish gem-hearted</b> monsters, and white-ish arms try to <b style="color: rgb(123, 111, 250);">grab her</b>!
+                <hr style="opacity:0;">
+                She screams and slips under the sheets, where the <b style="color: rgb(123, 111, 250);">semi-intangible monsters</b> cannot reach her. Out of<br>
+                spite they trash the entire house, and it becomes clear that they will not leave until they have taken her.<br>
+                <hr style="opacity:0;">
+                Claire, awake, waits for the daylight, but it does not seem to be coming. Finally, hungry, thirsty and afraid,<br>
+                she gathers her courage. Peeking over the blankets, she sees her <b style="color: goldenrod;">flashlight</b>: if the monsters have come<br>
+                out at night, it means they are afraid of <b style="color: goldenrod;">light</b>! Using it, she can reach the living room and <b style="color: goldenrod;">leave the house.</b>
+                <hr style="opacity:0;">
+                If Mom and Dad are gone, then she will save herself! 
+            </div>
+            <div style="height:fit-content; padding:25px 0;">
+                <button type="button" title="Start playing" class="btn btn-horizontal" style="color:rgb(255, 253, 225);
+                font-size:1.2vw; border-color:rgba(255, 253, 225, 0.8);"
+                onclick="startFromStory();">
+                Start
+                </button>
+
+                <div title="This story is boring :(" style="display:block; margin:0 auto; position:relative; text-align:right; width:16vw;
+                transform:translateY(-5vh) translateX(21vw); scale:0.8;">
+                    <span style="vertical-align: middle; color:rgb(255, 253, 225); font-size:1.1vw; padding-right:10px;">
+                        Don't show again
+                    </span>
+                    <label class="switch" style="vertical-align: middle;">
+                        <input type="checkbox" id="showStory" value="1">
+                            <span class="slider round"></span>
+                        </input>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Messaggi che appaiono sullo schermo -->
+    <div id="text-box" style="width:12%; height:fit-content; position:fixed; bottom:20%; right:30%; background-color: rgba(0,0,0,0.05);
+    border: 2px solid rgba(255, 252, 204, 0.8); border-top: 1px solid rgba(255, 252, 204, 0.6); border-radius:10px;
+    text-align:center; padding:10px; padding-bottom:13px;" hidden>
+        <span id="custom-text" style="display:inline; vertical-align: middle; font-size:100%; color:rgb(255, 253, 225);">
+            Add a message here through the showMessage() function in utils.js
+        </span>
+    </div>
+
+    <!-- Testo in alto a destra -->
+    <div id="info-text" style="width:fit-content; height:fit-content; position:fixed; top:5%; right:5%; text-align:left;
+    vertical-align: middle; font-size:100%; color:rgb(255, 253, 225);" hidden>
+        Press P to pause the game.
+        <div id="lives" style="padding-top:10px;">LIVES:&nbsp; &#9825; &#9825; &#9825;</div>
+        <div style="padding-top:10px;">Holding:&nbsp;<span id="key_symbol" title="key" hidden>&#128477;&#65039;</span>&nbsp;<span id="torch_symbol" title="torch" hidden>&#128294;</span>
+        </div>
+    </div>
+
+    <!-- Schermata di perdita -->
+    <div id="lostGame" class="fullScreen" style="text-align:center; background-color: rgb(0, 0, 0);" hidden>
+        <div style="position:absolute; top:36vh; left:50vw; transform: translate(-50%, -50%);">
+            <img id="lost-gif" src="images/lost.gif" style="height:19vw; margin-bottom:10px;"/>
+            <div style="font-size:2.7vw; color:rgb(255, 255, 215); transform:scaleY(1.1);">YOU LOST</div>
+            <button type="button" class="btn btn-horizontal" title="Go back to the start menu" style="position:relative; margin-top:10vh; color:rgb(255, 255, 215);"
+            onclick="location.reload();">
+            Start menu
+            </button>
+        </div>
+    </div>
+
+    <!-- Schermata di vittoria -->
+    <div id="wonGame" class="fullScreen" style="text-align:center; background-color: rgb(0, 0, 0);" hidden>
+        <div style="position:absolute; top:38vh; left:50vw; transform: translate(-50%, -50%);">
+            <img id="won-gif" src="images/won.gif" style="height:16vw; margin-bottom:10px;"/>
+            <div style="font-size:2.7vw; color:rgb(255, 255, 215); transform:scaleY(1.1);">YOU WON!</div>
+            <button type="button" class="btn btn-horizontal" title="Go back to the start menu" style="position:relative; margin-top:10vh; color:rgb(255, 255, 215);"
+            onclick="location.reload();">
+            Start menu
+            </button>
+        </div>
+        <!-- CORIANDOLI: -->
+        <div class="confetti"></div><div class="confetti"></div><div class="confetti"></div><div class="confetti"></div>
+        <div class="confetti"></div><div class="confetti"></div><div class="confetti"></div><div class="confetti"></div>
+        <div class="confetti"></div><div class="confetti"></div>
+    </div>
+
+    <!-- To handle the Pointer Lock API -->
+    <div id="pointerLocked" hidden>0</div>
+
+    <!-- To handle Animations -->
+    <div id="standingPosition" hidden>stand</div>
+    <div id="moveStatus" hidden>rest</div>
+    <div id="sliding" hidden>false</div>
+    <div id="dirRot" hidden></div>
+    <div id="mouse" hidden>false</div>
+    <div id="wheel" hidden>false</div>
+    
+    <script>
+
+        /**** VARIABILI GLOBALI ****/
+
+        var canvas = document.getElementById("renderCanvas");
+        var navigationPlugin;
+        var engine = null;
+        var scene = null;
+        var sceneToRender = null;
+
+        // Queste sono variabili globali perche' non vanno distrutte quando cambia la scena
+        var camera = null;
+        var player = null;
+        var playerComponents;
+        var torch = null;
+        var objKey;
+        var mirrorLight;
+        var mirrorModel;
+        var mirrorLuminance;
+
+        var currentScene = -1;          // e' un indice
+        var sceneObjects = [[], [], []];
+        var navMeshObjects = [[], [], []];
+
+        var standingPosition = document.getElementById("standingPosition").innerHTML;
+        var moveStatus = document.getElementById("moveStatus").innerHTML;
+
+
+        var createDefaultEngine = function() {
+            return new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true,  disableWebGL2Support: false}, false);
+        };
+        
+        window.initFunction = async function() {
+            
+            var asyncEngineCreation = async function() {
+                try {
+                return createDefaultEngine();
+                } catch(e) {
+                console.log("the available createEngine function failed. Creating the default engine instead");
+                return createDefaultEngine();
+                }
+            }
+
+            window.engine = await asyncEngineCreation();
+
+            if (!engine) throw 'engine should not be null.';
+            await buildNav();
+        };
+        initFunction();
+
+        
+        // Aggiungi listener ai pulsanti del menu iniziale
+        document.getElementById("start_button").onclick = async function() {   
+            if (engine && navigationPlugin) {
+                document.getElementById("startMenu").setAttribute("hidden", null);
+                document.getElementById("loading").removeAttribute("hidden");
+
+                scene = await basicScene();
+                await BedroomScene();
+                sceneToRender = scene;
+            
+                scene.executeWhenReady( () => {
+                    let showStory = true;
+
+                    // Controlla se c'e' un cookie che dice di non mostrare la storia:
+                    let cookies = document.cookie.split(';');   // i vari cookie sono separati da punto e virgola
+                    for(var i=0;i < cookies.length;i++) {
+                        if (cookies[i].includes("showStory")) {
+                            showStory = false;
+                        }
+                    }
+
+                    if (showStory) {
+                        // nascondi schermata di caricamento e mostra testo iniziale
+                        document.getElementById("loading").setAttribute("hidden", null);
+                        startRenderLoop(engine, canvas);
+                        monsters[BEDROOM_SCENE_ID].pauseMonsters();
+                        document.getElementById("lore").removeAttribute("hidden");
+                    }
+                    else {
+                        startGame();
+                    }
+                });
+            }
+            else {
+                console.log("Engine or navigation plugin not ready, wait a few seconds and retry");
+            }
+        };
+        document.getElementById("level2_button").onclick = async function() {   
+            if (engine && navigationPlugin) {
+                document.getElementById("startMenu").setAttribute("hidden", null);
+                document.getElementById("loading").removeAttribute("hidden");
+
+                scene = await basicScene();
+                await HallwayScene(true);
+                sceneToRender = scene;
+            
+                scene.executeWhenReady( () => {
+                    startGame();
+                    player.grabObject();    // parti gia' con la torcia in mano
+                });
+            }
+            else {
+                console.log("Engine or navigation plugin not ready, wait a few seconds and retry");
+            }
+        };
+        document.getElementById("level3_button").onclick = async function() {   
+            if (engine && navigationPlugin) {  
+                document.getElementById("startMenu").setAttribute("hidden", null);
+                document.getElementById("loading").removeAttribute("hidden");
+
+                scene = await basicScene();
+                await LivingroomScene(true);
+                sceneToRender = scene;
+            
+                scene.executeWhenReady( () => {
+                    startGame();
+                    player.grabObject();
+                    player.addPickableObject("Chiave", objKey);
+                });
+            }
+            else {
+                console.log("Engine or navigation plugin not ready, wait a few seconds and retry");
+            }
+        };
+
+
+        // Resize
+        window.addEventListener("resize", function () {
+            engine.resize();
+        });
+
+        
+        function startGame() {
+
+            startRenderLoop(engine, canvas);
+            player.start();
+
+            // Nascondi schermata di caricamento
+            document.getElementById("loading").setAttribute("hidden", null);
+
+            // Mostra info
+            document.getElementById("info-text").removeAttribute("hidden");
+
+            // Cattura il mouse
+            canvas.requestPointerLock();
+            document.getElementById("pointerLocked").innerHTML = "1";
+        }
+
+        // Codice eseguito quando ti appare la storia del gioco e premi start
+        function startFromStory() {
+
+            if (document.getElementById("showStory").checked) {
+                // metti un cookie per evitare di mostrare di nuovo la storia
+                let expiration = new Date();
+                expiration.setTime(expiration.getTime() + (15*60*1000));    // scade dopo 15 minuti (15 minuti * 60 secondi * 1000 millisecondi)
+                document.cookie = "showStory=false; expires=" + expiration.toUTCString(); 
+            }
+
+            document.getElementById('lore').setAttribute('hidden', null);
+            unpauseGame();
+        }
+
+
+        // PAUSA
+        document.addEventListener("keydown", async function(e) {
+            if (e.key.toLowerCase() == "p") {
+                if (!player.gamePaused)
+                    pauseGame();
+                else
+                    unpauseGame();
+            }
+        });
+
+        function pauseGame() {
+
+            // Ferma giocatore e mostri
+            if (monsters[currentScene]) monsters[currentScene].pauseMonsters();
+            if (player != null) player.stop();
+            
+            // Mostra il menu di pausa
+            document.getElementById("pauseMenu").removeAttribute("hidden");
+
+            // Rilascia il mouse
+            document.exitPointerLock();
+            document.getElementById("pointerLocked").innerHTML = "0";
+
+            // Nascondi info, ed eventuale messaggio sullo schermo
+            document.getElementById("info-text").setAttribute("hidden", null);
+            hideMessage();
+        }
+    
+
+        function unpauseGame() {
+            // Attiva giocatore e mostri
+            player.start();
+            monsters[currentScene].activateMonsters();
+            
+            // Nascondi il menu di pausa
+            document.getElementById("pauseMenu").setAttribute("hidden", null);
+                
+            // Cattura il mouse
+            canvas.requestPointerLock();
+            document.getElementById("pointerLocked").innerHTML = "1";
+
+            // Mostra info
+            document.getElementById("info-text").removeAttribute("hidden");
+        }
+
+        // Per tornare al menu inziale
+        function goBackToStart() {
+           location.reload();
+        }
+        
+
+        function loseGame() {
+            // Dispose scena e eventualmente torcia
+            disposeScene(currentScene);
+            if (torch != null) {
+                torch.getMesh().dispose(false,true);
+                torch = null;
+            }
+
+            // Dispose modello del giocatore
+            player.model.dispose(false,true);
+            player = null;
+
+            // Dispose modello del mostro
+            monsterModel1.dispose(false,true);
+            monsterModel1 = null;
+            monsterModel2.dispose(false,true);
+            monsterModel2 = null;
+            monsterModel3.dispose(false,true);
+            monsterModel3 = null;
+
+            engine.stopRenderLoop();
+
+            // Rilascia il mouse
+            document.exitPointerLock();
+            document.getElementById("pointerLocked").innerHTML = "0";
+
+            // Nascondi info, ed eventuale messaggio sullo schermo
+            document.getElementById("info-text").setAttribute("hidden", null);
+            hideMessage();
+
+            // Nascondi i menu per sicurezza
+            document.getElementById("startMenu").setAttribute("hidden", null);
+            document.getElementById("pauseMenu").setAttribute("hidden", null);
+
+            // Mostra la schermata di perdita
+            document.getElementById("lost-gif").src = "images/lost.gif";   // serve a far ripartire la gif (perche' ho fatto apposta che non va in loop)
+            document.getElementById("lostGame").removeAttribute("hidden");
+        }
+
+
+        function winGame() {
+            // Dispose scena e eventualmente torcia
+            disposeScene(currentScene);
+            if (torch != null) {
+                torch.getMesh().dispose(false,true);
+                torch = null;
+            }
+
+            // Dispose modello del giocatore
+            player.model.dispose(false,true);
+            player = null;
+
+            // Dispose modello del mostro
+            monsterModel1.dispose(false,true);
+            monsterModel1 = null;
+            monsterModel2.dispose(false,true);
+            monsterModel2 = null;
+            monsterModel3.dispose(false,true);
+            monsterModel3 = null;
+
+            engine.stopRenderLoop();
+
+            // Rilascia il mouse
+            document.exitPointerLock();
+            document.getElementById("pointerLocked").innerHTML = "0";
+
+            // Nascondi info, ed eventuale messaggio sullo schermo
+            document.getElementById("info-text").setAttribute("hidden", null);
+            hideMessage();
+
+            // Nascondi i menu per sicurezza
+            document.getElementById("startMenu").setAttribute("hidden", null);
+            document.getElementById("pauseMenu").setAttribute("hidden", null);
+
+            // Mostra la schermata di vittoria
+            document.getElementById("wonGame").removeAttribute("hidden");
+        }
+
+        async function buildNav() {
+            await Recast();
+            navigationPlugin = new BABYLON.RecastJSPlugin();
+        }
+
+
+        var startRenderLoop = function (engine, canvas) {
+                engine.runRenderLoop(function () {
+                    if (sceneToRender && sceneToRender.activeCamera) {
+                        sceneToRender.render();
+                    }
+                });
+            }
+    
+        function resetSwitchs() {
+            document.getElementById('hints').checked=false;
+            document.getElementById('monsters').checked=false;
+            document.getElementById('showStory').checked=false;
+            document.getElementById('lighter').checked=false;
+            document.getElementById('shadows').checked=false;
+        }
+
+        
+        /*
+        // Chiedi conferma prima di chiudere la scheda. Serve perche' premo sempre CTRL+W al posto di SHIFT+W e la scheda mi si chiude :(
+            window.onbeforeunload = function(){
+            return 'Are you sure you want to leave?';
+        };
+        */
+    </script>
+</body>
+</html>
