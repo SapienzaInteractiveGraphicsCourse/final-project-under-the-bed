@@ -40,12 +40,35 @@ class Monsters {
             if(this.rayhelper !== undefined){
             this.rayhelper.dispose();
             }
-            if (this.monsterList[i].torched <= 0 ) {
-                var handDistance = BABYLON.Vector3.Distance(this.monsterList[i].hands.absolutePosition, this.player.getTorsoPosition());
-                if (handDistance < 1) {
-                    this.happyMonster(i);
-                    this.player.loseOneLife();
 
+            if (this.monsterList[i].torched <= 0 ) {
+                var inSightInfo = isInPossibleSight(this.monsterList[i].hands, this.player.getTorsoPosition(), 
+                new BABYLON.Vector3(0,0,1), Math.cos(Math.PI/2), false);
+                if(inSightInfo.inSight){
+                    var dir = this.player.getTorsoPosition().subtract(this.monsterList[i].hands.absolutePosition);
+                    var ray = new BABYLON.Ray(this.monsterList[i].hands.absolutePosition, dir, 1);
+                    var hits = scene.multiPickWithRay(ray);
+                    
+                    if (true){
+                        if (rayHelper !== undefined)
+                            rayHelper.dispose();
+                        rayHelper = new BABYLON.RayHelper(ray);
+                        rayHelper.show(scene);
+                    }
+                    
+                    if (hits){
+                        hits = sortPickedMeshesByDistance(hits, 0);
+                        for (var i = hits.length -1; i >= 0; i--) {
+                            if(this.player.model == hits[i].pickedMesh){   
+                                if(hits[i].distance < 1)  
+                                    this.happyMonster(i);
+                                    this.player.loseOneLife();
+                            }else if (this.getExcusedMeshes().includes(hits[i].pickedMesh)){
+                            }else{
+                                break;
+                            }
+                        }  
+                    }
                 }
                 //Vedo la bambina? -> vado da lei?
                 else if (this.canSeeGirl(i)) {

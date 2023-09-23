@@ -56,10 +56,14 @@ function isInCloseSight(observer, lookedAt, excused, distance, adjustHeight = nu
 }
 var rayHelper;
 // method that checks if, given two objects and a forward direction of the observer, the lookedAt is in possible sight
-function isInPossibleSight(observer, lookedAt, forward, targetCos){
+function isInPossibleSight(observer, lookedAt, forward, targetCos, mesh = true){
     
     var direction = directionFrom(forward, observer);
-    var vecFrom = BABYLON.Vector3.Normalize(lookedAt.absolutePosition.subtract(observer.absolutePosition));
+    if (mesh){
+        var vecFrom = BABYLON.Vector3.Normalize(lookedAt.absolutePosition.subtract(observer.absolutePosition));
+    }else{
+        var vecFrom = BABYLON.Vector3.Normalize(lookedAt.subtract(observer.absolutePosition));
+    }
     var cos = cosBetween(direction, vecFrom);
     
     var inS = false;
