@@ -1711,8 +1711,6 @@ class Player {
         for (let k in firstKf){
             if(k == "i" || k == "li"){
                 continue;
-            }else if(k == "torch"){
-                this.torch.setRotation(firstKf[k]);
             }else if(k == "bc"){
                 this.#skeleton[k].rotation = new BABYLON.Vector3(firstKf[k].x * (1 - importance) + secondKf[k].x * (importance),
                 firstKf[k].y * (1 - importance) + secondKf[k].y * (importance) + addRot,
