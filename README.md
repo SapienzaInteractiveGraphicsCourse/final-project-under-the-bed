@@ -23,4 +23,6 @@ Gavriel Di Nepi 2067753 <br>
 ## Play
 play the game here ➡️ https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/
 
+A mouse is highly recommended!
+
 ## Report
