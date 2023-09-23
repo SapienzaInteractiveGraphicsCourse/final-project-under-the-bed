@@ -21,7 +21,7 @@ Gavriel Di Nepi 2067753 <br>
 - **P** - Pause the Game
 
 ## Play
-play the game here ➡️ https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/
+Play the game here ➡️ https://sapienzainteractivegraphicscourse.github.io/final-project-under-the-bed/
 
 A mouse is highly recommended!
 
