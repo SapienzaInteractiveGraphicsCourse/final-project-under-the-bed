@@ -182,6 +182,10 @@ class Player {
     getChildren(){
         return this.children.slice();
     }
+
+    getAllMeshes(){
+        return this.children.concat([this.model]);
+    }
     
     keydownHandler(e) {
 

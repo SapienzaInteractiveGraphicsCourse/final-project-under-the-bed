@@ -43,7 +43,8 @@ class Monsters {
 
             if (this.monsterList[i].torched <= 0 ) {
                 var inSightInfo = isInPossibleSight(this.monsterList[i].hands, this.player.getTorsoPosition(), 
-                new BABYLON.Vector3(0,0,1), Math.cos(Math.PI/2), false);
+                    new BABYLON.Vector3(0,0,1), Math.cos(Math.PI/2), false);
+
                 if(inSightInfo.inSight){
                     var dir = this.player.getTorsoPosition().subtract(this.monsterList[i].hands.absolutePosition);
                     var ray = new BABYLON.Ray(this.monsterList[i].hands.absolutePosition, dir, 1);
@@ -58,54 +59,64 @@ class Monsters {
                     
                     if (hits){
                         hits = sortPickedMeshesByDistance(hits, 0);
-                        for (var i = hits.length -1; i >= 0; i--) {
-                            if(this.player.model == hits[i].pickedMesh){   
-                                if(hits[i].distance < 1)  
+                        for (var j = hits.length -1; j >= 0; j--) {
+                            if(this.player.getAllMeshes().includes(hits[j].pickedMesh)){   
+                                if(hits[j].distance < 1){
                                     this.happyMonster(i);
                                     this.player.loseOneLife();
-                            }else if (this.getExcusedMeshes().includes(hits[i].pickedMesh)){
+                                    break;
+                                }
+                            }else if (this.getExcusedMeshes().includes(hits[j].pickedMesh)){
                             }else{
                                 break;
                             }
                         }  
                     }
                 }
-                //Vedo la bambina? -> vado da lei?
-                else if (this.canSeeGirl(i)) {
-                    this.monsterList[i].behav = "Grabbing";
-                    this.monsterList[i].goTo = this.navigationPlugin.getClosestPoint(this.bambina.position);
-                    this.crowd.agentGoto(monsters[i], this.monsterList[i].goTo);
-                }
-                //Sento la bambina? -> vado in una zona vicino a lei
-                else if (((distance < 5 && distance > 0.1) && this.player.getPlayerMovementStatus().includes("normal")) 
-                        || ((distance < 12 && distance > 0.1) && this.player.getPlayerMovementStatus().includes("loud"))
-                        || this.monsterList[i].behav == "Grabbing") {
-                    this.monsterList[i].behav = "Searching";
-
-                    this.monsterList[i].girlPos = this.bambina.position.clone();
-                  
-                    this.monsterList[i].girlPos.x += (0.5 + Math.random()) * (Math.random() > 0.5 ? 1 : -1);
-                    this.monsterList[i].girlPos.z += (0.5 + Math.random()) * (Math.random() > 0.5 ? 1 : -1);
-                    this.monsterList[i].goTo = this.navigationPlugin.getClosestPoint(this.monsterList[i].girlPos);
-                    this.crowd.agentGoto(monsters[i], this.monsterList[i].goTo);
-                    this.monsterList[i].patience = MONSTERT_PATIENCE;
-                    
-                }
-                else if (this.monsterList[i].behav == "Searching"){
-                    this.monsterList[i].patience -= 1;
-                    if(this.monsterList[i].patience == 0){
-                        this.monsterList[i].behav = "Roaming";
+                //Non ho preso la bambina?
+                if(this.monsterList[i].behav != "Happy"){
+                    //Vedo la bambina? -> vado da lei?
+                    if (this.canSeeGirl(i)) {
+                        this.monsterList[i].behav = "Grabbing";
+                        this.monsterList[i].goTo = this.navigationPlugin.getClosestPoint(this.bambina.position);
+                        this.crowd.agentGoto(monsters[i], this.monsterList[i].goTo);
                     }
-                }   
-                // Non ho informazioni sulla bambina? mi giro              
+                    //Sento la bambina? -> vado in una zona vicino a lei
+                    else if (((distance < 5 && distance > 0.1) && this.player.getPlayerMovementStatus().includes("normal")) 
+                            || ((distance < 12 && distance > 0.1) && this.player.getPlayerMovementStatus().includes("loud"))
+                            || this.monsterList[i].behav == "Grabbing") {
+                        this.monsterList[i].behav = "Searching";
+
+                        this.monsterList[i].girlPos = this.bambina.position.clone();
+                    
+                        this.monsterList[i].girlPos.x += (0.5 + Math.random()) * (Math.random() > 0.5 ? 1 : -1);
+                        this.monsterList[i].girlPos.z += (0.5 + Math.random()) * (Math.random() > 0.5 ? 1 : -1);
+                        this.monsterList[i].goTo = this.navigationPlugin.getClosestPoint(this.monsterList[i].girlPos);
+                        this.crowd.agentGoto(monsters[i], this.monsterList[i].goTo);
+                        this.monsterList[i].patience = MONSTERT_PATIENCE;
+                        
+                    }
+                    else if (this.monsterList[i].behav == "Searching"){
+                        this.monsterList[i].patience -= 1;
+                        if(this.monsterList[i].patience == 0){
+                            this.monsterList[i].behav = "Roaming";
+                        }
+                    }   
+                    // Non ho informazioni sulla bambina? mi giro              
+                    else {
+                        this.monsterList[i].behav = "Roaming";
+                        
+                        var monsterPosition = this.crowd.getAgentPosition(i);
+                        monsterPosition.x += (0.5 + Math.random()) * (Math.random() > 0.5 ? 1 : -1);
+                        monsterPosition.z += (0.5 + Math.random()) * (Math.random() > 0.5 ? 1 : -1);
+                        this.crowd.agentGoto(monsters[i], this.navigationPlugin.getClosestPoint(monsterPosition));
+                        
+                    }
+                        
+                }
+                //Rimango fermo
                 else {
-                    this.monsterList[i].behav = "Roaming";
-                    
-                    var monsterPosition = this.crowd.getAgentPosition(i);
-                    monsterPosition.x += (0.5 + Math.random()) * (Math.random() > 0.5 ? 1 : -1);
-                    monsterPosition.z += (0.5 + Math.random()) * (Math.random() > 0.5 ? 1 : -1);
-                    this.crowd.agentGoto(monsters[i], this.navigationPlugin.getClosestPoint(monsterPosition));
-                    
+                    this.crowd.agentGoto(monsters[i], this.navigationPlugin.getClosestPoint(this.crowd.getAgentPosition(i)));
                 }
                 
             }
@@ -357,6 +368,8 @@ class Monsters {
                         this.heartMaterialsList[i].emissiveColor = new BABYLON.Color3(col/255, col/255, col/255);
                     }
 
+                }else if (this.monsterList[i].behav == "Happy"){
+                    this.monsterList[i].behav = "Roaming";
                 }
             }            
         }
