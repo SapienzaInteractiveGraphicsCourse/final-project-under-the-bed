@@ -1,5 +1,5 @@
 # Under the Bed 
-![image](https://github.com/SapienzaInteractiveGraphicsCourse/final-project-under-the-bed/assets/130401341/4b6fc660-bbdb-4ac6-9991-d6b8808e98e8)
+![image](https://github.com/SapienzaInteractiveGraphicsCourse/final-project-under-the-bed/blob/main/Under%20the%20bed.png)
 
 ## Students
 Anna Carini 1771784 <br>
