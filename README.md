@@ -26,3 +26,4 @@ Play the game here ➡️ https://sapienzainteractivegraphicscourse.github.io/fi
 A mouse is highly recommended!
 
 ## Report
+You can read the report here  ➡️ [report.pdf](https://github.com/SapienzaInteractiveGraphicsCourse/final-project-under-the-bed/blob/main/Under_the_bed_REPORT.pdf)
