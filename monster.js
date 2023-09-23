@@ -50,7 +50,7 @@ class Monsters {
                     var ray = new BABYLON.Ray(this.monsterList[i].hands.absolutePosition, dir, 1);
                     var hits = scene.multiPickWithRay(ray);
                     
-                    if (true){
+                    if (false){
                         if (rayHelper !== undefined)
                             rayHelper.dispose();
                         rayHelper = new BABYLON.RayHelper(ray);
