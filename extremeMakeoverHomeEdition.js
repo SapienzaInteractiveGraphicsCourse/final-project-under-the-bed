@@ -118,7 +118,7 @@ async function basicScene(engine) {
 	var skybox = BABYLON.MeshBuilder.CreateBox("skyBox", {size:70.0}, scene);
 	var skyboxMaterial = new BABYLON.StandardMaterial("skyBox", scene);
 	skyboxMaterial.backFaceCulling = false;
-	skyboxMaterial.reflectionTexture = await new BABYLON.CubeTexture("skybox/", scene);
+	skyboxMaterial.reflectionTexture = await new BABYLON.CubeTexture("skybox/skybox", scene);
 	skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
 	skyboxMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
 	skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
